@@ -2,7 +2,6 @@
   "name": "classwork",
   "version": "1.0.0",
   "description": "",
-  "main": "graph.js",
   "scripts": {
     "test": "jest",
     "start": "parcel src/index.html",
