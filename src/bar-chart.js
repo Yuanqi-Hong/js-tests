@@ -41,16 +41,18 @@ d3.csv(require('./countries.csv')).then(ready)
 
 function ready(datapoints) {
   // Sort the countries from low to high
+
   datapoints = datapoints.sort((a, b) => {
     return a.life_expectancy - b.life_expectancy
   })
 
-  // And set up the domain of the xPositionScale
-  // using the read-in data
+  // Setting up the domain of the xPositionScale
+
   const countries = datapoints.map(d => d.country)
   xPositionScale.domain(countries)
 
-  /* Add your rectangles here */
+  // adding bars
+
   svg
     .selectAll('rect')
     .data(datapoints)
@@ -67,6 +69,23 @@ function ready(datapoints) {
       return yPositionScale(d.life_expectancy)
     })
     .attr('fill', '#362C36')
+
+  // adding axis
+
+  const yAxis = d3
+    .axisLeft(yAxisScale)
+    .tickSize(-width)
+    .ticks(5)
+
+  svg
+    .append('g')
+    .attr('class', 'axis y-axis')
+    .call(yAxis)
+    .lower()
+
+  d3.select('.y-axis .domain').remove()
+
+  // adding events
 
   d3.select('#asia').on('click', function() {
     svg
@@ -135,17 +154,4 @@ function ready(datapoints) {
       .transition()
       .attr('fill', '#362C36')
   })
-
-  const yAxis = d3
-    .axisLeft(yAxisScale)
-    .tickSize(-width)
-    .ticks(5)
-
-  svg
-    .append('g')
-    .attr('class', 'axis y-axis')
-    .call(yAxis)
-    .lower()
-
-  d3.select('.y-axis .domain').remove()
 }

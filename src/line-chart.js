@@ -17,6 +17,7 @@ var svg = d3
 var parseTime = d3.timeParse('%Y-%m-%d')
 
 var xPositionScale = d3.scaleLinear().range([0, width])
+
 var yPositionScale = d3
   .scaleLinear()
   .domain([90, 125])
@@ -55,9 +56,43 @@ function ready(datapoints) {
     .append('path')
     .datum(datapoints)
     .attr('d', line)
-    .attr('stroke', '#4cc1fc')
+    .attr('stroke', '#4CC1FC')
     .attr('stroke-width', 2)
     .attr('fill', 'none')
+
+  svg
+    .selectAll('circle')
+    .data(datapoints)
+    .enter()
+    .append('circle')
+    .attr('cx', d => {
+      return xPositionScale(d.datetime)
+    })
+    .attr('cy', d => {
+      return yPositionScale(d.Close)
+    })
+    .attr('r', 3)
+    .attr('fill', '#4CC1FC')
+    .on('mouseover', (d, i, nodes) => {
+      d3.select(nodes[i])
+        .transition()
+        .duration(100)
+        .attr('r', 5)
+      d3.select('#date').text(d.Date)
+      d3.select('#open').text(d.Open)
+      d3.select('#close').text(d.Close)
+      d3.select('#high').text(d.High)
+      d3.select('#low').text(d.Low)
+      d3.select('#volume').text(d.Volume)
+      d3.select('#adj-close').text(d['Adj Close'])
+      d3.select('#info').style('display', 'block')
+    })
+    .on('mouseout', function(d) {
+      d3.select(this)
+        .transition()
+        .attr('fill', '#4CC1FC')
+        .attr('r', 3)
+    })
 
   svg
     .append('text')

@@ -78,11 +78,13 @@
       <p>When someone removes their mouse from a dot, the circle should return to its original size, but the information may still be shown. When the page loads there should <strong>not</strong> be anything in that column.</p>
     </div>
     <div class="col-9">
-      <div id="line-chart">
+      <div id="line-chart" style="position:relative;left:-30px">
       </div>
     </div>
-    <div class="col-3 mt-4">
-      <p>Information should go here</p>
+    <div id="info" class="col-3 mt-4" style="position:relative;right:0px; display:none; background-color:#363636; font-size:14px; color:white; word-wrap:break-word; padding:10px">
+        <p>
+          On <span id="date"></span>, Apple opened at $<span id="open"></span> per share and closed at $<span id="close"></span>, with a high of $<span id="high"></span> and a low of $<span id="low"></span>. The trade volume on that day was <span id="volume"></span> and the adjusted closing price was $<span id="adj-close"></span>.
+        </p>
     </div>
   </div>
 
