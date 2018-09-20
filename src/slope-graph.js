@@ -100,7 +100,7 @@ function ready(datapoints) {
     .enter()
     .append('circle')
     .attr('class', function(d) {
-      return d.state
+      return d.state.replace(/ /g,'')
     })
     .attr('r', 3)
     .attr('cx', function(d) {
@@ -142,7 +142,7 @@ function ready(datapoints) {
     .enter()
     .append('path')
     .attr('class', function(d) {
-      return d.key
+      return d.key.replace(/ /g,'')
     })
     .attr('stroke', function(d) {
       return colorScale(d.key)
@@ -175,7 +175,7 @@ function ready(datapoints) {
     .enter()
     .append('text')
     .attr('class', function(d) {
-      return d.key
+      return d.key.replace(/ /g,'')
     })
     .attr('font-size', 12)
     .attr('fill', '#333333')
