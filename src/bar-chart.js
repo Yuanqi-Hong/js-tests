@@ -8,7 +8,6 @@ const margin = {
 }
 
 const width = 700 - margin.left - margin.right
-
 const height = 400 - margin.top - margin.bottom
 
 const svg = d3
