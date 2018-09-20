@@ -99,6 +99,9 @@ function ready(datapoints) {
     .data(datapoints)
     .enter()
     .append('circle')
+    .attr('class', function(d) {
+      return d.state
+    })
     .attr('r', 3)
     .attr('cx', function(d) {
       return xPositionScale(d.year)
@@ -108,6 +111,22 @@ function ready(datapoints) {
     })
     .attr('fill', function(d) {
       return colorScale(d.state)
+    })
+    .on('mouseover', function(d) {
+      svg.select('path.' + d.state).attr('stroke', '#FF8300')
+      svg.selectAll('circle.' + d.state).attr('fill', '#FF8300')
+      svg.select('text.' + d.state).attr('fill', '#FF8300')
+    })
+    .on('mouseout', function(d) {
+      svg.selectAll('path.' + d.state)
+        .transition()
+        .attr('stroke', colorScale(d.state))
+      svg.selectAll('circle.' + d.state)
+        .transition()
+        .attr('fill', colorScale(d.state))
+      svg.select('text.' + d.state)
+        .transition()
+        .attr('fill', colorScale(d.state))
     })
 
   var nested = d3
@@ -122,6 +141,9 @@ function ready(datapoints) {
     .data(nested)
     .enter()
     .append('path')
+    .attr('class', function(d) {
+      return d.key
+    })
     .attr('stroke', function(d) {
       return colorScale(d.key)
     })
@@ -130,12 +152,31 @@ function ready(datapoints) {
     .attr('d', function(d) {
       return line(d.values)
     })
+    .on('mouseover', function(d) {
+      svg.select('path.' + d.key).attr('stroke', '#FF8300')
+      svg.selectAll('circle.' + d.key).attr('fill', '#FF8300')
+      svg.select('text.' + d.key).attr('fill', '#FF8300')
+    })
+    .on('mouseout', function(d) {
+      svg.selectAll('path.' + d.key)
+        .transition()
+        .attr('stroke', colorScale(d.key))
+      svg.selectAll('circle.' + d.key)
+        .transition()
+        .attr('fill', colorScale(d.key))
+      svg.select('text.' + d.key)
+        .transition()
+        .attr('fill', colorScale(d.key))
+    })
 
   svg
     .selectAll('text')
     .data(nested)
     .enter()
     .append('text')
+    .attr('class', function(d) {
+      return d.key
+    })
     .attr('font-size', 12)
     .attr('fill', '#333333')
     .attr('x', xPositionScale('2016'))
@@ -154,6 +195,22 @@ function ready(datapoints) {
         return -12
       }
       return 3
+    })
+    .on('mouseover', function(d) {
+      svg.select('path.' + d.key).attr('stroke', '#FF8300')
+      svg.selectAll('circle.' + d.key).attr('fill', '#FF8300')
+      svg.select('text.' + d.key).attr('fill', '#FF8300')
+    })
+    .on('mouseout', function(d) {
+      svg.selectAll('path.' + d.key)
+        .transition()
+        .attr('stroke', colorScale(d.key))
+      svg.selectAll('circle.' + d.key)
+        .transition()
+        .attr('fill', colorScale(d.key))
+      svg.select('text.' + d.key)
+        .transition()
+        .attr('fill', colorScale(d.key))
     })
 
   var xAxis = d3.axisBottom(xPositionScale)
