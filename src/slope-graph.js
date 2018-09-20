@@ -3,6 +3,7 @@ import * as d3 from 'd3'
 var margin = { top: 60, left: 50, right: 150, bottom: 30 }
 
 var height = 600 - margin.top - margin.bottom
+
 var width = 450 - margin.left - margin.right
 
 var svg = d3
@@ -100,7 +101,7 @@ function ready(datapoints) {
     .enter()
     .append('circle')
     .attr('class', function(d) {
-      return d.state.replace(/ /g,'')
+      return d.state.replace(/ /g, '')
     })
     .attr('r', 3)
     .attr('cx', function(d) {
@@ -113,18 +114,23 @@ function ready(datapoints) {
       return colorScale(d.state)
     })
     .on('mouseover', function(d) {
-      svg.select('path.' + d.state.replace(/ /g,'')).attr('stroke', '#FF8300')
-      svg.selectAll('circle.' + d.state.replace(/ /g,'')).attr('fill', '#FF8300')
-      svg.select('text.' + d.state.replace(/ /g,'')).attr('fill', '#FF8300')
+      svg.select('path.' + d.state.replace(/ /g, '')).attr('stroke', '#FF8300')
+      svg
+        .selectAll('circle.' + d.state.replace(/ /g, ''))
+        .attr('fill', '#FF8300')
+      svg.select('text.' + d.state.replace(/ /g, '')).attr('fill', '#FF8300')
     })
     .on('mouseout', function(d) {
-      svg.selectAll('path.' + d.state.replace(/ /g,''))
+      svg
+        .selectAll('path.' + d.state.replace(/ /g, ''))
         .transition()
         .attr('stroke', colorScale(d.state))
-      svg.selectAll('circle.' + d.state.replace(/ /g,''))
+      svg
+        .selectAll('circle.' + d.state.replace(/ /g, ''))
         .transition()
         .attr('fill', colorScale(d.state))
-      svg.select('text.' + d.state.replace(/ /g,''))
+      svg
+        .select('text.' + d.state.replace(/ /g, ''))
         .transition()
         .attr('fill', colorScale(d.state))
     })
@@ -142,7 +148,7 @@ function ready(datapoints) {
     .enter()
     .append('path')
     .attr('class', function(d) {
-      return d.key.replace(/ /g,'')
+      return d.key.replace(/ /g, '')
     })
     .attr('stroke', function(d) {
       return colorScale(d.key)
@@ -153,18 +159,21 @@ function ready(datapoints) {
       return line(d.values)
     })
     .on('mouseover', function(d) {
-      svg.select('path.' + d.key.replace(/ /g,'')).attr('stroke', '#FF8300')
-      svg.selectAll('circle.' + d.key.replace(/ /g,'')).attr('fill', '#FF8300')
-      svg.select('text.' + d.key.replace(/ /g,'')).attr('fill', '#FF8300')
+      svg.select('path.' + d.key.replace(/ /g, '')).attr('stroke', '#FF8300')
+      svg.selectAll('circle.' + d.key.replace(/ /g, '')).attr('fill', '#FF8300')
+      svg.select('text.' + d.key.replace(/ /g, '')).attr('fill', '#FF8300')
     })
     .on('mouseout', function(d) {
-      svg.selectAll('path.' + d.key.replace(/ /g,''))
+      svg
+        .selectAll('path.' + d.key.replace(/ /g, ''))
         .transition()
         .attr('stroke', colorScale(d.key))
-      svg.selectAll('circle.' + d.key.replace(/ /g,''))
+      svg
+        .selectAll('circle.' + d.key.replace(/ /g, ''))
         .transition()
         .attr('fill', colorScale(d.key))
-      svg.select('text.' + d.key.replace(/ /g,''))
+      svg
+        .select('text.' + d.key.replace(/ /g, ''))
         .transition()
         .attr('fill', colorScale(d.key))
     })
@@ -175,7 +184,7 @@ function ready(datapoints) {
     .enter()
     .append('text')
     .attr('class', function(d) {
-      return d.key.replace(/ /g,'')
+      return d.key.replace(/ /g, '')
     })
     .attr('font-size', 12)
     .attr('fill', '#333333')
@@ -197,18 +206,21 @@ function ready(datapoints) {
       return 3
     })
     .on('mouseover', function(d) {
-      svg.select('path.' + d.key.replace(/ /g,'')).attr('stroke', '#FF8300')
-      svg.selectAll('circle.' + d.key.replace(/ /g,'')).attr('fill', '#FF8300')
-      svg.select('text.' + d.key.replace(/ /g,'')).attr('fill', '#FF8300')
+      svg.select('path.' + d.key.replace(/ /g, '')).attr('stroke', '#FF8300')
+      svg.selectAll('circle.' + d.key.replace(/ /g, '')).attr('fill', '#FF8300')
+      svg.select('text.' + d.key.replace(/ /g, '')).attr('fill', '#FF8300')
     })
     .on('mouseout', function(d) {
-      svg.selectAll('path.' + d.key.replace(/ /g,''))
+      svg
+        .selectAll('path.' + d.key.replace(/ /g, ''))
         .transition()
         .attr('stroke', colorScale(d.key))
-      svg.selectAll('circle.' + d.key.replace(/ /g,''))
+      svg
+        .selectAll('circle.' + d.key.replace(/ /g, ''))
         .transition()
         .attr('fill', colorScale(d.key))
-      svg.select('text.' + d.key.replace(/ /g,''))
+      svg
+        .select('text.' + d.key.replace(/ /g, ''))
         .transition()
         .attr('fill', colorScale(d.key))
     })
