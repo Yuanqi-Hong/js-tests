@@ -79,12 +79,12 @@ function ready(datapoints) {
         .duration(100)
         .attr('r', 5)
       d3.select('#date').text(d.Date)
-      d3.select('#open').text(d.Open)
-      d3.select('#close').text(d.Close)
-      d3.select('#high').text(d.High)
-      d3.select('#low').text(d.Low)
-      d3.select('#volume').text(d.Volume)
-      d3.select('#adj-close').text(d['Adj Close'])
+      d3.select('#open').text(parseFloat(d.Open).toFixed(2))
+      d3.select('#close').text(parseFloat(d.Close).toFixed(2))
+      d3.select('#high').text(parseFloat(d.High).toFixed(2))
+      d3.select('#low').text(parseFloat(d.Low).toFixed(2))
+      
+      d3.select('#adj-close').text(parseFloat(d['Adj Close']).toFixed(2))
       d3.select('#info').style('display', 'block')
     })
     .on('mouseout', function(d) {
